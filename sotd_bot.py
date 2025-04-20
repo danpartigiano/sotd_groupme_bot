@@ -39,8 +39,8 @@ from dotenv import load_dotenv
 ###############################################################################
 # Configuration
 ###############################################################################
-load_dotenv()  # ← NEW
-BOT_ID: str = BOT_ID  # required
+load_dotenv()  
+BOT_ID: str = os.environ.get("BOT_ID")  # required
 PING_AT: str = os.environ.get("PING_AT", "13:45")
 QUEUE_FILE = pathlib.Path(os.environ.get("QUEUE_FILE", "queue.json"))
 API_ENDPOINT = "https://api.groupme.com/v3/bots/post"
@@ -180,4 +180,4 @@ def callback():
 
 if __name__ == "__main__":
     threading.Thread(target=_scheduler_thread, daemon=True).start()
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
