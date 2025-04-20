@@ -40,7 +40,7 @@ from dotenv import load_dotenv
 # Configuration
 ###############################################################################
 load_dotenv()  
-BOT_ID: str = os.environ.get("BOT_ID")  # required
+BOT_ID: str = os.environ.get("BOT_ID") 
 PING_AT: str = os.environ.get("PING_AT", "13:45")
 QUEUE_FILE = pathlib.Path(os.environ.get("QUEUE_FILE", "queue.json"))
 API_ENDPOINT = "https://api.groupme.com/v3/bots/post"
@@ -174,6 +174,9 @@ def callback():
             _help()
     return "OK", 200
 
+@app.route("/healthz", methods=["GET","HEAD"])
+def health():
+    return "OK", 200
 ###############################################################################
 # Entry point
 ###############################################################################
